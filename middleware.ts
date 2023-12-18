@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 export default authMiddleware({
     publicRoutes: ["/"],
     afterAuth(auth, req) {
-      if (auth.userId &&auth.isPublicRoute) {
+      if (auth.userId && auth.isPublicRoute) {
         let path = "/select-org";
 
         if (auth.orgId) {
@@ -20,11 +20,11 @@ export default authMiddleware({
 
       if (!auth.userId && !auth.isPublicRoute) {
         return redirectToSignIn({
-          returnBackUrl: req.url,
+          returnBackUrl: req.url
         });
       }
 
-      if (!auth.userId && !auth.orgId && req.nextUrl.pathname != "/select-org") {
+      if (auth.userId && !auth.orgId && req.nextUrl.pathname != "/select-org") {
         const orgSelection = new URL("/select-org", req.url);
         return NextResponse.redirect(orgSelection);
       }
