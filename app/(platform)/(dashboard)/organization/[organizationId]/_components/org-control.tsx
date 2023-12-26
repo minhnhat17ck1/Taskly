@@ -6,7 +6,7 @@ import { useOrganizationList } from '@clerk/nextjs';
 
 export const OrgControl = () => {
   const params = useParams();
-  const { setActive } = useOrganizationList();
+  const { setActive } = useOrganizationList(); // Change the organization automatically when the URL changes
 
   useEffect(() => {
     if (!setActive) return;
