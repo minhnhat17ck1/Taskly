@@ -18,6 +18,7 @@ export const MobileSidebar = () => {
   const isOpen = useMobileSidebar((state) => state.isOpen);
 
   useEffect(() => {
+    // Prevents Hydration Mismatch, useEffect is only run on the server
     setIsMounted(true);
   }, []);
 
@@ -26,6 +27,7 @@ export const MobileSidebar = () => {
   }, [pathname, onClose]);
 
   if (!isMounted) {
+    // Prevents Hydration Mismatch, useEffect is only run on the server
     return null;
   }
 
